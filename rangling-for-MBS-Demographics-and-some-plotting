@@ -1,0 +1,382 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import style
+
+from numpy.polynomial.polynomial import polyfit
+
+# 2012
+df_1 = pd.read_csv("MBS Demographics 2012 Qtr1 (March).csv")
+df_2 = pd.read_csv("MBS Demographics 2012 Qtr2 (June).csv")
+df_3 = pd.read_csv("MBS Demographics 2012 Qtr3 (September).csv")
+df_4 = pd.read_csv("MBS Demographics 2012 Qtr4 (December).csv") 
+
+# print(df_1.shape)
+# print(df_2.shape)
+# print(df_3.shape)
+# print(df_4.shape)
+
+frames = [df_1, df_2, df_3, df_4]
+df_2012 = pd.concat(frames)
+vic_df_2012 = df_2012[df_2012['State'] == 'VIC']
+print(vic_df_2012.shape)
+vic_df_2012 = vic_df_2012.reset_index(drop = True)
+# vic_df_2012.head()
+age_range_vic_df_2012 = []
+for i in vic_df_2012['Age_Range'].unique():
+    age_range_vic_df_2012.append(i)
+print(age_range_vic_df_2012)
+
+sum_benefits_list_vic_df_2012 = []
+for i in age_range_vic_df_2012:
+    result = vic_df_2012['Benefits ($)'][vic_df_2012['Age_Range'] == i].sum()
+    sum_benefits_list_vic_df_2012.append(result)
+max_point_vic_df_2012_y = max(sum_benefits_list_vic_df_2012) # max_y
+max_point_vic_df_2012_index = sum_benefits_list_vic_df_2012.index(max_point_vic_df_2012_y)
+max_point_vic_df_2012_x = age_range_vic_df_2012[max_point_vic_df_2012_index] # max_x
+print(sum_benefits_list_vic_df_2012)
+print(max_point_vic_df_2012_y)
+
+# 2013
+df_1 = pd.read_csv("MBS Demographics 2013 Qtr1 (March).csv")
+df_2 = pd.read_csv("MBS Demographics 2013 Qtr2 (June).csv")
+df_3 = pd.read_csv("MBS Demographics 2013 Qtr4 (December).csv")
+df_4 = pd.read_csv("MBS Demographics 2013 Qtr3 (September).csv") 
+
+# print(df_1.shape)
+# print(df_2.shape)
+# print(df_3.shape)
+# print(df_4.shape)
+
+frames = [df_1, df_2, df_3, df_4]
+df_2013 = pd.concat(frames)
+vic_df_2013 = df_2013[df_2013['State'] == 'VIC']
+print(vic_df_2013.shape)
+vic_df_2013 = vic_df_2013.reset_index(drop = True)
+# vic_df_2012.head()
+
+age_range_vic_df_2013 = []
+for i in vic_df_2013['Age_Range'].unique():
+    age_range_vic_df_2013.append(i)
+print(age_range_vic_df_2013)
+
+sum_benefits_list_vic_df_2013 = []
+for i in age_range_vic_df_2012:
+    result = vic_df_2013['Benefits ($)'][vic_df_2013['Age_Range'] == i].sum()
+    sum_benefits_list_vic_df_2013.append(result)
+max_point_vic_df_2013_y = max(sum_benefits_list_vic_df_2013) # max_y
+max_point_vic_df_2013_index = sum_benefits_list_vic_df_2013.index(max_point_vic_df_2013_y)
+max_point_vic_df_2013_x = age_range_vic_df_2013[max_point_vic_df_2013_index] # max_x
+print(sum_benefits_list_vic_df_2013)
+print(max_point_vic_df_2013_y)
+
+# 2014
+df_1 = pd.read_csv("MBS Demographics 2014 Qtr1 (March).csv")
+df_2 = pd.read_csv("MBS Demographics 2014 Qtr2 (June).csv")
+df_3 = pd.read_csv("MBS Demographics 2014 Qtr4 (December).csv")
+df_4 = pd.read_csv("MBS Demographics 2014 Qtr3 (September).csv") 
+
+# print(df_1.shape)
+# print(df_2.shape)
+# print(df_3.shape)
+# print(df_4.shape)
+
+frames = [df_1, df_2, df_3, df_4]
+df_2014 = pd.concat(frames)
+vic_df_2014 = df_2014[df_2014['State'] == 'VIC']
+print(vic_df_2014.shape)
+vic_df_2014 = vic_df_2014.reset_index(drop = True)
+# vic_df_2012.head()
+
+age_range_vic_df_2014 = []
+for i in vic_df_2014['Age_Range'].unique():
+    age_range_vic_df_2014.append(i)
+print(age_range_vic_df_2014)
+
+sum_benefits_list_vic_df_2014 = []
+for i in age_range_vic_df_2012:
+    result = vic_df_2014['Benefits ($)'][vic_df_2014['Age_Range'] == i].sum()
+    sum_benefits_list_vic_df_2014.append(result)
+max_point_vic_df_2014_y = max(sum_benefits_list_vic_df_2014) # max_y
+max_point_vic_df_2014_index = sum_benefits_list_vic_df_2014.index(max_point_vic_df_2014_y)
+max_point_vic_df_2014_x = age_range_vic_df_2014[max_point_vic_df_2014_index] # max_x
+print(sum_benefits_list_vic_df_2014)
+print(max_point_vic_df_2014_y)
+
+# 2015
+df_1 = pd.read_csv("MBS Demographics 2015 Qtr1 (March).csv")
+df_2 = pd.read_csv("MBS Demographics 2015 Qtr2 (June).csv")
+df_3 = pd.read_csv("MBS Demographics 2015 Qtr4 (December).csv")
+df_4 = pd.read_csv("MBS Demographics 2015 Qtr3 (September).csv") 
+
+# print(df_1.shape)
+# print(df_2.shape)
+# print(df_3.shape)
+# print(df_4.shape)
+
+frames = [df_1, df_2, df_3, df_4]
+df_2015 = pd.concat(frames)
+vic_df_2015 = df_2015[df_2015['State'] == 'VIC']
+print(vic_df_2015.shape)
+vic_df_2015 = vic_df_2015.reset_index(drop = True)
+# vic_df_2012.head()
+
+age_range_vic_df_2015 = []
+for i in vic_df_2015['Age_Range'].unique():
+    age_range_vic_df_2015.append(i)
+print(age_range_vic_df_2015)
+
+vic_df_2015.loc[vic_df_2015.Age_Range == 'Unknown', 'Age_Range'] = '"Unknown"'
+print(vic_df_2015[vic_df_2015['Age_Range'] == '">85"'].shape)
+print(vic_df_2015[vic_df_2015['Age_Range'] == '">=85"'].shape)
+
+vic_df_2015.loc[vic_df_2015.Age_Range == '">=85"', 'Age_Range'] = '">85"'
+age_range_vic_df_2015 = []
+for i in vic_df_2015['Age_Range'].unique():
+    age_range_vic_df_2015.append(i)
+print(age_range_vic_df_2015)
+
+print(age_range_vic_df_2012)
+
+sum_benefits_list_vic_df_2015 = []
+for i in age_range_vic_df_2015:
+    result = vic_df_2015['Benefits ($)'][vic_df_2015['Age_Range'] == i].sum()
+    sum_benefits_list_vic_df_2015.append(result)
+max_point_vic_df_2015_y = max(sum_benefits_list_vic_df_2015) # max_y
+max_point_vic_df_2015_index = sum_benefits_list_vic_df_2015.index(max_point_vic_df_2015_y)
+max_point_vic_df_2015_x = age_range_vic_df_2015[max_point_vic_df_2015_index] # max_x
+print(sum_benefits_list_vic_df_2015)
+print(max_point_vic_df_2015_y)
+
+plt.figure(figsize=(15,8))
+plt.plot(age_range_vic_df_2012, sum_benefits_list_vic_df_2012,label = 'VIC 2012', marker = 'o', color='r')
+plt.plot(age_range_vic_df_2012, sum_benefits_list_vic_df_2013, label = 'VIC 2013', marker = 'o', color = 'b')
+plt.plot(age_range_vic_df_2012, sum_benefits_list_vic_df_2014, label = 'VIC 2014', marker = 'o', color = 'y')
+plt.plot(age_range_vic_df_2012, sum_benefits_list_vic_df_2015, label = 'VIC 2015', marker = 'o', color = 'lightgreen')
+
+
+plt.axhline(y=max_point_vic_df_2012_y, color='r', linestyle='-')
+plt.axvline(x=max_point_vic_df_2012_x, color = 'r', linestyle='-')
+
+
+plt.axhline(y=max_point_vic_df_2013_y, color = 'b', linestyle='-')
+plt.axvline(x=max_point_vic_df_2013_x, color = 'b', linestyle='-')
+
+plt.axhline(y=max_point_vic_df_2014_y, color = 'y', linestyle = '-')
+plt.axvline(x=max_point_vic_df_2014_x, color = 'y', linestyle = '-')
+
+plt.axhline(y=max_point_vic_df_2015_y, color = 'lightgreen', linestyle = '-')
+plt.axvline(x=max_point_vic_df_2015_x, color = 'lightgreen', linestyle = '-')
+
+plt.title("Age Range and Benefits($), Year 2012 - Year 2015, VIC", size = 20)
+plt.legend(loc='best')
+plt.xlabel("Age Range", size = 20)
+plt.ylabel("Benefits", size = 20)
+plt.show()
+
+# Merge 
+# print(vic_df_2012.shape)
+# print(vic_df_2013.shape)
+# print(vic_df_2014.shape)
+# print(vic_df_2015.shape)
+
+# print(vic_df_2012.isnull().values.any())
+# print(vic_df_2013.isnull().values.any())
+# print(vic_df_2014.isnull().values.any())
+print(vic_df_2015.isnull().values.any())
+
+print(vic_df_2015.isnull().sum())
+
+# Change the null value of vic_df_2015
+### ==== change the null value and order of columns in vic_df_2015 === Start
+pd.isnull(vic_df_2015.loc[94776, 'Benefit']) == False
+vic_df_2015['Benefit'].iloc[94776]
+
+vic_df_2015[vic_df_2015['Benefit'].notnull()].head()
+# put the value in Benefit into Benefits ($) column if there is null value
+for i in range(vic_df_2015.shape[0]):
+    if pd.isnull(vic_df_2015.loc[i, 'Benefit']) == False:
+        benefit_value = vic_df_2015['Benefit'].iloc[i]
+        vic_df_2015.set_value(i, 'Benefits ($)', benefit_value)
+vic_df_2015.isnull().sum()
+vic_df_2015 = vic_df_2015[['Year', 'Month', 'Item_Number', 'State', 'Age_Range', 'Gender', 'Services', 'Benefits ($)']]
+
+### ==== change the null value and order of columns in vic_df_2015 === End
+
+for i in range(len(vic_df_2012.columns)):
+    c_2012 = vic_df_2012.columns[i]
+    c_2013 = vic_df_2013.columns[i]
+    c_2014 = vic_df_2014.columns[i]
+    c_2015 = vic_df_2015.columns[i]
+    
+    if c_2012 == c_2013 == c_2014 == c_2015:
+        print("Yes Correct ", c_2012)
+    else:
+        print("Wrong Column")
+        
+total_df = pd.concat([vic_df_2012, vic_df_2013, vic_df_2014, vic_df_2015], ignore_index = True)
+total_df['Year'] = total_df.Year.astype('object')
+
+%matplotlib inline
+import matplotlib.pyplot as plt
+total_df.hist(bins = 50, figsize=(20,15))
+plt.show()
+
+for i in range(total_df.shape[0]):
+    if total_df['Year'].iloc[i] == 2012:
+        total_df.set_value(i, 'Year', "2012")
+    if total_df['Year'].iloc[i] == 2013:
+        total_df.set_value(i, "Year", "2013")
+    if total_df['Year'].iloc[i] == 2014:
+        total_df.set_value(i, "Year", "2014")
+    if total_df['Year'].iloc[i] == 2015:
+        total_df.set_value(i, 'Year', "2015")
+        
+for i in range(total_df.shape[0]):
+    if total_df['Gender'].iloc[i] == "F":
+        total_df.set_value(i, 'Gender', "Female")
+    if total_df['Gender'].iloc[i] == 'M':
+        total_df.set_value(i, "Gender", "Male")
+        
+total_df['Gender'].value_counts()
+# print out the final dataframe as csv
+total_df.to_csv("MBS_4_Years_Demographics.csv", index = False)
+try_it = pd.read_csv("MBS_4_Years_Demographics.csv")
+try_it.head(3)
+# print out the final dataframe as excel file
+total_df.to_excel("MBS_4_Years_Demographics.xlsx", index= False)
+### ==================== end merge ========================================== ###
+try_again_df.head(5)
+
+### =================== start re-plotting ================================== ###
+sum_benefits_list_vic_df_2015 = []
+for i in age_range_vic_df_2015:
+    result = vic_df_2015['Benefits ($)'][vic_df_2015['Age_Range'] == i].sum()
+    sum_benefits_list_vic_df_2015.append(result)
+max_point_vic_df_2015_y = max(sum_benefits_list_vic_df_2015) # max_y
+max_point_vic_df_2015_index = sum_benefits_list_vic_df_2015.index(max_point_vic_df_2015_y)
+max_point_vic_df_2015_x = age_range_vic_df_2015[max_point_vic_df_2015_index] # max_x
+print(sum_benefits_list_vic_df_2015)
+print(max_point_vic_df_2015_y)
+
+plt.figure(figsize=(15,8))
+plt.plot(age_range_vic_df_2012, sum_benefits_list_vic_df_2012,label = 'VIC 2012', marker = 'o', color='r')
+plt.plot(age_range_vic_df_2012, sum_benefits_list_vic_df_2013, label = 'VIC 2013', marker = 'o', color = 'b')
+plt.plot(age_range_vic_df_2012, sum_benefits_list_vic_df_2014, label = 'VIC 2014', marker = 'o', color = 'y')
+plt.plot(age_range_vic_df_2012, sum_benefits_list_vic_df_2015, label = 'VIC 2015', marker = 'o', color = 'lightgreen')
+
+
+plt.axhline(y=max_point_vic_df_2012_y, color='r', linestyle='-')
+plt.axvline(x=max_point_vic_df_2012_x, color = 'r', linestyle='-')
+
+
+plt.axhline(y=max_point_vic_df_2013_y, color = 'b', linestyle='-')
+plt.axvline(x=max_point_vic_df_2013_x, color = 'b', linestyle='-')
+
+plt.axhline(y=max_point_vic_df_2014_y, color = 'y', linestyle = '-')
+plt.axvline(x=max_point_vic_df_2014_x, color = 'y', linestyle = '-')
+
+plt.axhline(y=max_point_vic_df_2015_y, color = 'lightgreen', linestyle = '-')
+plt.axvline(x=max_point_vic_df_2015_x, color = 'lightgreen', linestyle = '-')
+
+plt.title("Age Range and Benefits($), Year 2012 - Year 2015, VIC", size = 20)
+plt.legend(loc='best')
+plt.xlabel("Age Range", size = 20)
+plt.ylabel("Benefits", size = 20)
+plt.show()
+### =================== end re-plotting ================================== ###
+
+a = tuple(sum_benefits_list_vic_df_2012)
+print(a)
+
+plt.figure(figsize=(15,8))
+barwidth = 0.1
+# sum_benefits_list_vic_df_2012
+# sum_benefits_list_vic_df_2013
+# sum_benefits_list_vic_df_2014
+# sum_benefits_list_vic_df_2015
+
+r1 = np.arange(len(age_range_vic_df_2012)-1)
+r2 = [x + barwidth for x in r1]
+r3 = [x + barwidth for x in r2]
+r4 = [x + barwidth for x in r3]
+
+plt.bar(r1, sum_benefits_list_vic_df_2012[:-1], color='r',width=barwidth,edgecolor='white',label='Year 2012')
+plt.bar(r2, sum_benefits_list_vic_df_2013[:-1], color = 'b', width=barwidth,edgecolor='white',label='Year 2013')
+plt.bar(r3, sum_benefits_list_vic_df_2014[:-1], color='y', width=barwidth, edgecolor='white',label='Year 2014')
+plt.bar(r4, sum_benefits_list_vic_df_2015[:-1], color = 'lightgreen', width=barwidth, edgecolor='white', label='Year 2015')
+
+plt.xlabel("Age Range", fontweight='bold', size = 20)
+plt.ylabel("Benefits ($)", fontweight='bold', size = 20)
+plt.xticks([r + barwidth for r in range(len(sum_benefits_list_vic_df_2012[:-1]))], age_range_vic_df_2012[:-1])
+
+# plt.gcf().autofmt_xdate()
+plt.tight_layout()
+plt.title("The Bar Chart of Age Range and Benefits($), Year 2012 - Year 2015, VIC", size = 20)
+plt.legend()
+plt.show()
+
+```
+The x-axis is about Age Range, y-axis is about Benefits, from year 2012 to year 2015 in Victoria 
+state. From this graph, we can know the benefits in age 65-74 are great than other age ranges in each 
+year. One interesting thing we found is the benefits in year 2015 are less than the other 3 years in 
+every age range. The general trend is that the amount of benefits in increasing when the age is increasing. 
+However, after age range 65-74, the benefits is going down.
+```
+# Australia-SP.RUR.TOTL.csv
+sp_total = pd.read_csv("Australia-SP.RUR.TOTL.csv")
+new_y = []
+for i in sp_total[' Value']:
+    num_record = i.split(",")
+    t = ""
+    for j in num_record:
+        t += j
+    new_t = int(t)
+    new_y.append(new_t)
+    
+import numpy as np
+import pandas as pd
+import seaborn as sns
+
+fig, ax = plt.subplots()
+fig.set_size_inches(11.7, 8.27)
+
+x = list(sp_total[' Year'])
+y = new_y
+
+# plot 
+# ====================================
+sns.set_style('ticks')
+sns.regplot(x, y, ci=None)
+
+ax.set_ylim([1000000,3500000])
+ax.set_xlabel("Year", size = 25)
+ax.set_ylabel("Population", size = 25)
+ax.set_title("The Trend of Population Growth of Rural Areas in Australia from Year 1960 to Year 2016", size = 15)
+
+sns.despine()
+
+item_2012 = []
+for i in vic_df_2012.Item_Number.unique():
+    item_2012.append(i)
+    
+plt.figure(figsize=(15,8))
+vic_df_2012.plot(kind = 'bar', x= "Item_Number", y = "Benefits ($)")
+plt.show()
+
+plt.figure(figsize=(15,8))
+plt.plot(vic_df_2012['Item_Number'], vic_df_2012['Benefits ($)'])
+plt.show()
+
+
+plt.figure(figsize=(15,8))
+plt.plot(vic_df_2013['Item_Number'], vic_df_2013['Benefits ($)'])
+plt.show()
+
+plt.figure(figsize=(15,8))
+plt.plot(vic_df_2014['Item_Number'], vic_df_2014['Benefits ($)'])
+plt.show()
+
+plt.figure(figsize=(15,8))
+plt.plot(vic_df_2015['Item_Number'], vic_df_2015['Benefits ($)'])
+plt.show()
